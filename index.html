@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>GeoGuessr</h1>
+  
+    <div id="street">
+        <div id="map"></div>
+    
+        <button id="button">Finish Your Guess</button>
+
+        <div id="result">
+            <div id="result-container">
+                <div id="distance">
+                    <div id="distance-text">Distance:</div>
+                    <div id="value1">2843 km</div>
+                </div>
+                <div id="score">
+                    <div id="score-text">Score:</div>
+                    <div id="value2">4000/5000</div>
+                </div>
+            </div>
+            
+             <button id="play-again">Play Again</button>
+        </div>
+        
+
+      
+    </div>
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=API_KEY&loading=async&callback=initMap&v=weekly">
+    </script>
+    <script src="main.js"></script>
+</body>
+
+</html>
+
