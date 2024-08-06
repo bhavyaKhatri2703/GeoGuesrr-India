@@ -26,10 +26,6 @@ function initMap() {
 
     let marked = {}
 
-    
-    const location_marker = document.createElement("img")
-
-    location_marker.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
 
 
     map.addListener("click", (e) => {
@@ -42,7 +38,8 @@ function initMap() {
             {
                 position: { lat: clicked.lat(), lng: clicked.lng() },
                 map: map,
-                content : location_marker,
+
+                icon : 'red_MarkerG.png'
             }
         )
         marked.lat = clicked.lat();
@@ -94,7 +91,8 @@ function initMap() {
         let answer_marker = new google.maps.Marker(
             {
                 position :{ lat : answer.lat , lng : answer.lng},
-                map : map
+                map : map,
+                icon : 'green_MarkerF.png'
 
             }
         )
