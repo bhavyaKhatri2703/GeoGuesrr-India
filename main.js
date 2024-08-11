@@ -1,6 +1,8 @@
 
 let map
 let marker
+let line
+let answer_marker
 const container = document.getElementById("map")
 
 container.addEventListener("mouseover", () =>
@@ -65,7 +67,8 @@ function initMap() {
     })
 
     let answer = {}
-    streetViewService.getPanorama({ location: generateRandomCoords(),  preference: google.maps.StreetViewPreference.NEAREST , radius: 100000 }, (res, status) => {
+    function generateStreetView (){
+        streetViewService.getPanorama({ location: generateRandomCoords(),  preference: google.maps.StreetViewPreference.NEAREST , radius: 100000 }, (res, status) => {
         if (status === "OK") {
             panorama.setPano(res.location.pano);
             panorama.setPov({ heading: 270, pitch: 0 });
@@ -82,13 +85,16 @@ function initMap() {
         }
 
     })
+}
+
+    generateStreetView()
     
     const submit_button = document.getElementById("button");
     
 
     submit_button.addEventListener("click", () =>
     {
-        let answer_marker = new google.maps.Marker(
+        answer_marker = new google.maps.Marker(
             {
                 position :{ lat : answer.lat , lng : answer.lng},
                 map : map,
@@ -102,7 +108,7 @@ function initMap() {
             { lat : marked.lat , lng : marked.lng}
         ];
 
-        const line = new google.maps.Polyline(
+         line = new google.maps.Polyline(
             {
                 path : path_coords ,
                 geodesic : true,
@@ -158,7 +164,22 @@ function initMap() {
         const play_again = document.getElementById("play-again")
 
         play_again.addEventListener("click", () => {
-            window.location.reload();
+           marker.setMap(null);
+           marker = null;
+
+           answer_marker.setMap(null);
+           answer_marker = null;
+
+           line.setMap(null);
+           line = null;
+
+           document.getElementById("result").style.display = "none";
+           document.getElementById("value1").textContent = "";
+           document.getElementById("value2").textContent = "";
+
+           generateStreetView()
+
+
         })
 
         
